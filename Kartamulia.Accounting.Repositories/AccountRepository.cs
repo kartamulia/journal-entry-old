@@ -16,7 +16,7 @@ namespace Kartamulia.Accounting.Repositories
         Task<Account> GetAccount(string accountNumber, CancellationToken cancellationToken);
     }
 
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private static List<Account> _accounts = new List<Account>()
         {

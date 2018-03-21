@@ -18,6 +18,8 @@ namespace Kartamulia.Accounting.Entities
 
         public int Id { get; set; }
 
+        public int JournalId { get; set; }
+
         public string AccountNumber { get; set; }
 
         public decimal Debit { get; set; }
