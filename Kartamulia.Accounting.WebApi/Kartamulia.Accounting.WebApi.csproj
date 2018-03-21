@@ -17,4 +17,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Kartamulia.Accounting.Entities\Kartamulia.Accounting.Entities.csproj" />
+    <ProjectReference Include="..\Kartamulia.Accounting.Repositories\Kartamulia.Accounting.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
