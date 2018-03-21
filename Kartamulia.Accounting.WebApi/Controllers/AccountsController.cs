@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Kartamulia.Accounting.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +13,47 @@ namespace Kartamulia.Accounting.WebApi.Controllers
     [Route("api/Accounts")]
     public class AccountsController : Controller
     {
+        private readonly IAccountRepository _accountRepository;
+
+        #region ctor
+
+        public AccountsController(IAccountRepository accountRepository)
+        {
+            _accountRepository = accountRepository;
+        }
+
+        #endregion
+
         // GET: api/Accounts
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAccounts(CancellationToken cancellationToken)
         {
-            return new string[] { "value1", "value2" };
+            return this.Ok(await _accountRepository.GetAccounts(cancellationToken));
         }
 
         // GET: api/Accounts/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{accountNumber}", Name = "GetAccount")]
+        public async Task<IActionResult> GetAccount(string accountNumber, CancellationToken cancellationToken)
         {
-            return "value";
+            return this.Ok(await _accountRepository.GetAccount(accountNumber, cancellationToken));
         }
         
-        // POST: api/Accounts
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST: api/Accounts
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
         
-        // PUT: api/Accounts/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT: api/Accounts/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
         
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/ApiWithActions/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
