@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartamulia.Accounting.WebApi", "Kartamulia.Accounting.WebApi\Kartamulia.Accounting.WebApi.csproj", "{70B27E19-609C-49DC-A45E-EAEFEF29620E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kartamulia.Accounting.WebApi", "Kartamulia.Accounting.WebApi\Kartamulia.Accounting.WebApi.csproj", "{70B27E19-609C-49DC-A45E-EAEFEF29620E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartamulia.Accounting.Entities", "Kartamulia.Accounting.Entities\Kartamulia.Accounting.Entities.csproj", "{F10C233C-FC94-4F3D-B0FF-5D95DB576429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kartamulia.Accounting.Entities", "Kartamulia.Accounting.Entities\Kartamulia.Accounting.Entities.csproj", "{F10C233C-FC94-4F3D-B0FF-5D95DB576429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartamulia.Accounting.Repositories", "Kartamulia.Accounting.Repositories\Kartamulia.Accounting.Repositories.csproj", "{5CDAA4E2-9906-42A0-BF9F-233E06215DB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kartamulia.Accounting.Repositories", "Kartamulia.Accounting.Repositories\Kartamulia.Accounting.Repositories.csproj", "{5CDAA4E2-9906-42A0-BF9F-233E06215DB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
