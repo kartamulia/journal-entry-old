@@ -26,6 +26,7 @@ namespace Kartamulia.Accounting.NetCoreMvcClient
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IGeneralJournalRepository, GeneralJournalRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
