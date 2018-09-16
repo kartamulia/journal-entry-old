@@ -45,8 +45,15 @@ namespace Kartamulia.Accounting.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGeneralJournal([FromBody]GeneralJournal generalJournal, CancellationToken cancellationToken)
         {
-            var result = await _generalJournalRepository.AddGeneralJournal(generalJournal, cancellationToken);
-            return this.CreatedAtRoute("GetGeneralJournal", new { id = result.Id }, result);
+            try
+            {
+                var result = await _generalJournalRepository.AddGeneralJournal(generalJournal, cancellationToken);
+                return this.CreatedAtRoute("GetGeneralJournal", new { id = result.Id }, result);
+            }
+            catch (Exception)
+            {
+                return this.BadRequest();
+            }
         }
         
         //// PUT: api/GeneralJournals/5
