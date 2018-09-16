@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Kartamulia.Accounting.BusinessRules;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Kartamulia.Accounting.Entities
 {
-    public class JournalItem
+    public class JournalItem : IJournalItem
     {
         #region ctor
 
