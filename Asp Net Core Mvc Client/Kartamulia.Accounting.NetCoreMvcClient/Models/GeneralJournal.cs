@@ -27,7 +27,7 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Models
 
         [Required]
         [StringLength(100)]
-        public string Desciption { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [StringLength(100)]

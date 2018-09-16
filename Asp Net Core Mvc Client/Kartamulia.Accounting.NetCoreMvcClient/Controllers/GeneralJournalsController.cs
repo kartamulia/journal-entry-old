@@ -39,7 +39,7 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Controllers
             {
                 generalJournal = new GeneralJournal();
                 generalJournal.Date = DateTime.Now;
-                generalJournal.Desciption = "Description";
+                generalJournal.Description = "Description";
                 generalJournal.Reference = "Reference";
             }
 
