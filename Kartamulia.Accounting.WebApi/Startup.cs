@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Kartamulia.Accounting.BusinessRules;
 using Kartamulia.Accounting.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace Kartamulia.Accounting.WebApi
         {
             services.AddSingleton<IAccountRepository, AccountRepository>();
             services.AddSingleton<IGeneralJournalRepository, GeneralJournalRepository>();
+            services.AddSingleton<IJournalValidator, JournalValidator>();
 
             services.AddCors(setup =>
             {
