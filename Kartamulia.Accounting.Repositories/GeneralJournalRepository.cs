@@ -1,4 +1,5 @@
-﻿using Kartamulia.Accounting.Entities;
+﻿using Kartamulia.Accounting.BusinessRules;
+using Kartamulia.Accounting.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,13 @@ namespace Kartamulia.Accounting.Repositories
         {
 
         };
+        private readonly IJournalValidator _journalValidator;
 
         #region ctor
 
-        public GeneralJournalRepository()
+        public GeneralJournalRepository(IJournalValidator journalValidator)
         {
+            _journalValidator = journalValidator;
         }
 
         #endregion
@@ -50,16 +53,10 @@ namespace Kartamulia.Accounting.Repositories
             // Validate general journal.
             // ??
 
-            var journalsCount = _generalJournals.Count;
-            int journalItemsCount = _generalJournals.Sum(x => x.Items.Count);
-
-            generalJournal.Id = journalsCount + 1;
-            generalJournal?.Items.ToList().ForEach(x =>
+            if (_journalValidator.Validate(generalJournal) == false)
             {
-                journalItemsCount++;
-                x.Id = journalItemsCount;
-                x.JournalId = generalJournal.Id;
-            });
+                throw new Exception("Journal is not valid.");
+            }
 
             _generalJournals.Add(generalJournal);
 
