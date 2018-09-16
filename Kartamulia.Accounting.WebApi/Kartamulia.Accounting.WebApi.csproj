@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kartamulia.Accounting.BusinessRules\Kartamulia.Accounting.BusinessRules.csproj" />
     <ProjectReference Include="..\Kartamulia.Accounting.Entities\Kartamulia.Accounting.Entities.csproj" />
     <ProjectReference Include="..\Kartamulia.Accounting.Repositories\Kartamulia.Accounting.Repositories.csproj" />
   </ItemGroup>

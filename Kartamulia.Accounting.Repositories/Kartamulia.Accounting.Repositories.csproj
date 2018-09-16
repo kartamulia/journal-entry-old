@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kartamulia.Accounting.BusinessRules\Kartamulia.Accounting.BusinessRules.csproj" />
     <ProjectReference Include="..\Kartamulia.Accounting.Entities\Kartamulia.Accounting.Entities.csproj" />
   </ItemGroup>
 
