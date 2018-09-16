@@ -12,7 +12,7 @@ namespace Kartamulia.Accounting.Repositories
     {
         Task<IEnumerable<GeneralJournal>> GetGeneralJournals(CancellationToken cancellationToken);
 
-        Task<GeneralJournal> GetGeneralJournal(int generalJournalId, CancellationToken cancellationToken);
+        Task<GeneralJournal> GetGeneralJournalAsync(int generalJournalId, CancellationToken cancellationToken);
 
         Task<GeneralJournal> AddGeneralJournal(GeneralJournal generalJournal, CancellationToken cancellationToken);
     }
@@ -39,9 +39,10 @@ namespace Kartamulia.Accounting.Repositories
             return await Task.FromResult(_generalJournals);
         }
 
-        public async Task<GeneralJournal> GetGeneralJournal(int generalJournalId, CancellationToken cancellationToken)
+        public async Task<GeneralJournal> GetGeneralJournalAsync(int generalJournalId, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(_generalJournals.FirstOrDefault(x => x.Id == generalJournalId));
+            var generalJournal = _generalJournals.FirstOrDefault(x => x.Id == generalJournalId);
+            return await Task.FromResult(generalJournal);
         }
 
         public async Task<GeneralJournal> AddGeneralJournal(GeneralJournal generalJournal, CancellationToken cancellationToken)

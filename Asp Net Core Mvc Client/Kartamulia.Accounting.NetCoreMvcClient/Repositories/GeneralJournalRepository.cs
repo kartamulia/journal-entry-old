@@ -10,6 +10,8 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Repositories
     public interface IGeneralJournalRepository
     {
         Task<List<GeneralJournal>> GetGeneralJournalsAsync();
+        Task<GeneralJournal> AddOrUpdateGeneralJournalAsync(GeneralJournal generalJournal);
+        Task<GeneralJournal> GetGeneralJournalAsync(int id);
     }
 
     public class GeneralJournalRepository : IGeneralJournalRepository
@@ -34,7 +36,7 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Repositories
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(baseAddress);
-                    string requestUri = "api/accounts";
+                    string requestUri = "api/generaljournals";
                     var response = await client.GetAsync(requestUri);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -51,6 +53,67 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Repositories
                 throw;
             }
         }
+
+        public async Task<GeneralJournal> AddOrUpdateGeneralJournalAsync(GeneralJournal generalJournal)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(baseAddress);
+                    string requestUri = "api/generaljournals";
+                    HttpResponseMessage response = null;
+
+                    if (generalJournal.Id == 0)
+                    {
+                        response = await client.PostAsJsonAsync<GeneralJournal>(requestUri, generalJournal);
+                    }
+                    else
+                    {
+                        response = await client.PutAsJsonAsync<GeneralJournal>(requestUri, generalJournal);
+                    }
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.Created)
+                    {
+                        return await response.Content.ReadAsAsync<GeneralJournal>();
+                    }
+                    else
+                    {
+                        throw new Exception(response.StatusCode.ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<GeneralJournal> GetGeneralJournalAsync(int id)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(baseAddress);
+                    string requestUri = $"api/generaljournals/{id}";
+                    var response = await client.GetAsync(requestUri);
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        return await response.Content.ReadAsAsync<GeneralJournal>();
+                    }
+                    else
+                    {
+                        throw new Exception(response.StatusCode.ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         #endregion
 

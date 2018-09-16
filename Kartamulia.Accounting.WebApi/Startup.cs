@@ -25,6 +25,7 @@ namespace Kartamulia.Accounting.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IGeneralJournalRepository, GeneralJournalRepository>();
 
             services.AddCors(setup =>
             {

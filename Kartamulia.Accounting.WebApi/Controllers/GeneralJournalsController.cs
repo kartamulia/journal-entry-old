@@ -33,12 +33,12 @@ namespace Kartamulia.Accounting.WebApi.Controllers
         }
 
         // GET: api/GeneralJournals/5
-        [HttpGet("{generalJournalId}", Name = "GetGeneralJournal")]
-        public async Task<IActionResult> GetGeneralJournal(int generalJournalId, CancellationToken cancellationToken)
+        [HttpGet("{id}", Name = "GetGeneralJournal")]
+        public async Task<IActionResult> GetGeneralJournal(int id, CancellationToken cancellationToken)
         {
-            var generalJournal = _generalJournalRepository.GetGeneralJournal(generalJournalId, cancellationToken);
+            var generalJournal = await _generalJournalRepository.GetGeneralJournalAsync(id, cancellationToken);
             if (generalJournal == null) return this.NotFound();
-            return this.Ok(await Task.FromResult(generalJournal));
+            return this.Ok(generalJournal);
         }
 
         // POST: api/GeneralJournals
@@ -46,7 +46,7 @@ namespace Kartamulia.Accounting.WebApi.Controllers
         public async Task<IActionResult> AddGeneralJournal([FromBody]GeneralJournal generalJournal, CancellationToken cancellationToken)
         {
             var result = await _generalJournalRepository.AddGeneralJournal(generalJournal, cancellationToken);
-            return this.CreatedAtRoute("GetGeneralJournal", new { generalJournalId = result.Id }, result);
+            return this.CreatedAtRoute("GetGeneralJournal", new { id = result.Id }, result);
         }
         
         //// PUT: api/GeneralJournals/5

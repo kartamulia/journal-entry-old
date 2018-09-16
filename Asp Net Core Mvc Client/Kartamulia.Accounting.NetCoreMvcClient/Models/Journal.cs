@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Models
         public Journal()
         {
             this.Date = DateTime.Today.Date;
-            this.Items = new HashSet<JournalItem>();
+            this.Items = new List<JournalItem>();
         }
 
         #endregion
@@ -23,15 +24,19 @@ namespace Kartamulia.Accounting.NetCoreMvcClient.Models
 
         public DateTime Date { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string Desciption { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string Reference { get; set; }
 
         #endregion
 
         #region Collections
 
-        public ICollection<JournalItem> Items { get; set; }
+        public List<JournalItem> Items { get; set; }
 
         #endregion
     }

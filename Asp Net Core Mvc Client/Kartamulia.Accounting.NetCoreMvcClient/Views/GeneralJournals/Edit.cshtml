@@ -1,0 +1,93 @@
+﻿@model Kartamulia.Accounting.NetCoreMvcClient.Models.GeneralJournal
+
+@{
+    ViewData["Title"] = "Edit";
+    var modalId = "journal-item";
+    var areaModalId = "journal-item-label";
+}
+
+<h2>Edit</h2>
+
+<h4>GeneralJournal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Desciption" class="control-label"></label>
+                <input asp-for="Desciption" class="form-control" />
+                <span asp-validation-for="Desciption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reference" class="control-label"></label>
+                <input asp-for="Reference" class="form-control" />
+                <span asp-validation-for="Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+
+            <div>
+                <h3>Journal Details</h3>
+            </div>
+
+            <div>
+                <div class="btn-group">
+                    <a id="createJournalItem" data-toggle="modal" asp-action="AddEditJournalItem" data-target="#@modalId" class="btn btn-primary">
+                        <i class="glyphicon glyphicon-plus"></i> Add Journal Item
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Items.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => @Model.Items[i].AccountNumber)
+                                    <input type="hidden" asp-for="@Model.Items[i].AccountNumber" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => @Model.Items[i].Debit)
+                                    <input type="hidden" asp-for="@Model.Items[i].Debit" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => @Model.Items[i].Credit)
+                                    <input type="hidden" asp-for="@Model.Items[i].Credit" />
+                                </td>
+                                <td>
+                                    <a id="editJournalItem" data-toggle="modal" asp-action="AddEditJournalItem" data-target="#@modalId" asp-route-id="@Model.Items[i].Id">Edit</a> |
+                                    <a data-toggle="modal" asp-action="DeleteJournalItem" data-target="#@modalId" asp-route-id="@Model.Items[i].Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
